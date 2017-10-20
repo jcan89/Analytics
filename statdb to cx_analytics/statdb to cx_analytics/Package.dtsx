@@ -11,8 +11,8 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{5F533368-97B5-4643-B061-17032C5DE0A2}">
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{BCBC60A4-6FAC-40C3-A5CB-C9244A277533}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -37,7 +37,7 @@
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIdMVtq4jQ0ueNxx8lfN6mAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADPmxj3Wz51oUb7OYHsO92kAAAAAASAAACgAAAAEAAAAAYxgue2F6OMiZ3DvoM6m1woAAAAXyrRiPJxRqn+99Yb4QIek9dXNQKOYRUnHZeRYAb+MkDkG9h4TdS+BRQAAABZQTXlXzzSI7V6EEYhNEne6lWC8A</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIdMVtq4jQ0ueNxx8lfN6mAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAmwLu3W9h2wVyWPNeJKyFbAAAAAASAAACgAAAAEAAAADoZf/TWmagUpAZuAN218OIoAAAA9ZCZGTOwT8TVrm9nY85ZWCJjkvqDSQk4lpp1cCvGtB0o2FTI8AaoJxQAAAAzHVn9cN4+USCf4xMkQVuMRpv9sQ</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -3319,7 +3319,7 @@ args in (select distinct(args) from view$split where target='gaming');</property
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-          SQLTask:SqlStatementSource="merge srd.gameing as a&#xA;using (select * from stg.gameing ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;&#xA;truncate table stg.gameing;&#xA;&#xA;&#xA;merge srd.gaming as a&#xA;using ( select&#xA;c.userid_key as userid_key,&#xA;d.app as app,&#xA;d.sessionid as sessionid,&#xA;d.utceventtime as utceventtime,&#xA;d.[key] as [key],&#xA;d.args as args&#xA;from srd.users as  c&#xA;inner join stg.gamingtobiservice as d &#xA;on c.machineid = d.machineid) as b&#xA;on &#xA;a.sessionid =b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA; &#xA; &#xA;truncate table stg.gamingtobiservice;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="merge srd.gameing as a&#xA;using (select * from stg.gameing ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;&#xA;truncate table stg.gameing;&#xA;&#xA;&#xA;merge srd.gaming as a&#xA;using ( select&#xA;c.userid_key as userid_key,&#xA;d.machineid,&#xA;d.app as app,&#xA;d.sessionid as sessionid,&#xA;d.utceventtime as utceventtime,&#xA;d.[key] as [key],&#xA;d.args as args&#xA;from  stg.gamingtobiservice as d &#xA;left join srd.users as  c&#xA;on c.machineid = d.machineid) as b&#xA;on &#xA;a.sessionid =b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (case when b.userid_key is null then b.machineid else b.userid_key end, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA; &#xA;truncate table stg.gamingtobiservice;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -5969,6 +5969,804 @@ a.key;</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
+      DTS:refId="Package\session"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1f1cd4fe-3ae9-4263-900b-099fe39a364c}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="session"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\session\Data Conversion 2"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 2"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[userid]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="userid"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[userid]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[sessionid]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="sessionid"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[sessionid]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[app]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="app"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[app]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[version]"
+                      cachedDataType="i4"
+                      cachedName="version"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[version]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[machineid]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="machineid"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[machineid]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[utcstarttime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="utcstarttime"
+                      cachedScale="6"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[utcstarttime]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[utctzoffsetmin]"
+                      cachedDataType="i2"
+                      cachedName="utctzoffsetmin"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[utctzoffsetmin]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[sessioncounthint]"
+                      cachedDataType="i4"
+                      cachedName="sessioncounthint"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[sessioncounthint]" />
+                    <inputColumn
+                      refId="Package\session\Data Conversion 2.Inputs[Data Conversion Input].Columns[acceptancereason]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="acceptancereason"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[acceptancereason]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\session\Data Conversion 2.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of sessionid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="36"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of sessionid]"
+                      name="Copy of sessionid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[sessionid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of app]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="64"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of app]"
+                      name="Copy of app"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[app]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of version]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of version]"
+                      name="Copy of version"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[version]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of userid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="36"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of userid]"
+                      name="Copy of userid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[userid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of machineid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="36"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of machineid]"
+                      name="Copy of machineid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[machineid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of utcstarttime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of utcstarttime]"
+                      name="Copy of utcstarttime"
+                      scale="6"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[utcstarttime]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of utctzoffsetmin]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of utctzoffsetmin]"
+                      name="Copy of utctzoffsetmin"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[utctzoffsetmin]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of sessioncounthint]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of sessioncounthint]"
+                      name="Copy of sessioncounthint"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[sessioncounthint]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of acceptancereason]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="64"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of acceptancereason]"
+                      name="Copy of acceptancereason"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\session\session.Outputs[ODBC Source Output].Columns[acceptancereason]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\session\Data Conversion 2.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\session\Data Conversion 2.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\session\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\session\OLE DB Destination 2"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 2"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stg].[session]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\session\OLE DB Destination 2.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of userid]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="Copy of userid"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of userid]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of sessionid]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="Copy of sessionid"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[sessionid]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of sessionid]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of app]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="Copy of app"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[app]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of app]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of version]"
+                      cachedDataType="i4"
+                      cachedName="Copy of version"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[version]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of version]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of machineid]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="Copy of machineid"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[machineid]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of machineid]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of utcstarttime]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="Copy of utcstarttime"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[utcstarttime]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of utcstarttime]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of utctzoffsetmin]"
+                      cachedDataType="i2"
+                      cachedName="Copy of utctzoffsetmin"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[utctzoffsetmin]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of utctzoffsetmin]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of sessioncounthint]"
+                      cachedDataType="i4"
+                      cachedName="Copy of sessioncounthint"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[sessioncounthint]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of sessioncounthint]" />
+                    <inputColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of acceptancereason]"
+                      cachedDataType="wstr"
+                      cachedLength="64"
+                      cachedName="Copy of acceptancereason"
+                      externalMetadataColumnId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[acceptancereason]"
+                      lineageId="Package\session\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of acceptancereason]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="userid" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[sessionid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="sessionid" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[app]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="app" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[version]"
+                      dataType="i4"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[machineid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="machineid" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[utcstarttime]"
+                      dataType="dbTimeStamp"
+                      name="utcstarttime" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[utctzoffsetmin]"
+                      dataType="i2"
+                      name="utctzoffsetmin" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[sessioncounthint]"
+                      dataType="i4"
+                      name="sessioncounthint" />
+                    <externalMetadataColumn
+                      refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[acceptancereason]"
+                      codePage="1252"
+                      dataType="str"
+                      length="64"
+                      name="acceptancereason" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\session\OLE DB Destination 2.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\session\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\session\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\session\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\session\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\session\session"
+              componentClassID="Attunity.SSISODBCSrc"
+              contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;6"
+              description="ODBC Source"
+              name="session"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand">select * from session where app='EyeXEngine' and utcstarttime &gt;='2016-10-01'</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod"
+                  typeConverter="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\session\session.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi]"
+                  connectionManagerRefId="Package.ConnectionManagers[statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\session\session.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[sessionid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[sessionid]"
+                      length="36"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[sessionid]"
+                      name="sessionid" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[app]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[app]"
+                      length="64"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[app]"
+                      name="app" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[version]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[version]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[version]"
+                      name="version" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[userid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[userid]"
+                      length="36"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[userid]"
+                      name="userid" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[machineid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[machineid]"
+                      length="36"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[machineid]"
+                      name="machineid" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[utcstarttime]"
+                      dataType="dbTimeStamp2"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[utcstarttime]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[utcstarttime]"
+                      name="utcstarttime"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[utctzoffsetmin]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[utctzoffsetmin]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[utctzoffsetmin]"
+                      name="utctzoffsetmin" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[sessioncounthint]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[sessioncounthint]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[sessioncounthint]"
+                      name="sessioncounthint" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].Columns[acceptancereason]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[acceptancereason]"
+                      length="64"
+                      lineageId="Package\session\session.Outputs[ODBC Source Output].Columns[acceptancereason]"
+                      name="acceptancereason" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[sessionid]"
+                      dataType="wstr"
+                      length="36"
+                      name="sessionid" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[app]"
+                      dataType="wstr"
+                      length="64"
+                      name="app" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[version]"
+                      dataType="i4"
+                      name="version" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[userid]"
+                      dataType="wstr"
+                      length="36"
+                      name="userid" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[machineid]"
+                      dataType="wstr"
+                      length="36"
+                      name="machineid" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[utcstarttime]"
+                      dataType="dbTimeStamp2"
+                      name="utcstarttime"
+                      scale="6" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[utctzoffsetmin]"
+                      dataType="i2"
+                      name="utctzoffsetmin" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[sessioncounthint]"
+                      dataType="i4"
+                      name="sessioncounthint" />
+                    <externalMetadataColumn
+                      refId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[acceptancereason]"
+                      dataType="wstr"
+                      length="64"
+                      name="acceptancereason" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\session\session.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[sessionid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[sessionid]"
+                      length="36"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[sessionid]"
+                      name="sessionid" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[app]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[app]"
+                      length="64"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[app]"
+                      name="app" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[version]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[version]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[version]"
+                      name="version" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[userid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[userid]"
+                      length="36"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[userid]"
+                      name="userid" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[machineid]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[machineid]"
+                      length="36"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[machineid]"
+                      name="machineid" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[utcstarttime]"
+                      dataType="dbTimeStamp2"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[utcstarttime]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[utcstarttime]"
+                      name="utcstarttime"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[utctzoffsetmin]"
+                      dataType="i2"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[utctzoffsetmin]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[utctzoffsetmin]"
+                      name="utctzoffsetmin" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[sessioncounthint]"
+                      dataType="i4"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[sessioncounthint]"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[sessioncounthint]"
+                      name="sessioncounthint" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[acceptancereason]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\session\session.Outputs[ODBC Source Output].ExternalColumns[acceptancereason]"
+                      length="64"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[acceptancereason]"
+                      name="acceptancereason" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\session\session.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\session\session.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\session.Paths[Data Conversion Output]"
+              endId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\session\Data Conversion 2.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\session.Paths[ODBC Source Output]"
+              endId="Package\session\Data Conversion 2.Inputs[Data Conversion Input]"
+              name="ODBC Source Output"
+              startId="Package\session\session.Outputs[ODBC Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\setup"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
@@ -7610,7 +8408,7 @@ key in (select distinct(key) from view$split where target='trouble');</property>
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand">select userid, machineid from session
-where app='EyeXEngine' and utcstarttime &gt;=getdate()-10
+where app='EyeXEngine' and utcstarttime &gt;='2016-10-01'
 and left(version,4)&gt;=1018
 group by userid, machineid;</property>
                 <property
@@ -8133,8 +8931,8 @@ group by userid, machineid;</property>
 Left  join entry as b
 on a.sessionid =b.sessionid 
 where app='EyeXEngine'  and b.[key]='usb.device.id' and 
-a.utcstarttime &gt;=getdate()-10 and
-b.utceventtime &gt;=getdate()-10
+a.utcstarttime &gt;='2016-10-01' and
+b.utceventtime &gt;='2016-10-01'
 and (args&lt;&gt;'["1729C9AFA1EE566828EF50B182B8124708010BFF5FD5F5550B23A28B39804B02"]'
 or args &lt;&gt;'["83285FAECC76AA6AA98883B52EDC6179D7FA829FE3A281A05166C5C5067D8680"]' ) 
 group by userid, args;</property>
@@ -8283,7 +9081,7 @@ group by userid, args;</property>
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand">select a.userid  from  session as a
-where app='EyeXEngine' and utcstarttime &gt;=getdate()-10
+where app='EyeXEngine' and utcstarttime &gt;='2016-10-01'
 group by a.userid;</property>
                 <property
                   dataType="System.Int32"
@@ -8445,7 +9243,7 @@ group by a.userid;</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-          SQLTask:SqlStatementSource="merge srd.users as a&#xA;using (&#xA;select &#xA;e.userid as userid,&#xA;d.usbid as usbid,&#xA;c.machineid as machineid&#xA;from stg.users as e&#xA;left join stg.usbid as d&#xA;on e.userid=d.userid&#xA;left join stg.machineid as c&#xA;on d.userid=c.userid&#xA; ) as b&#xA;on a.userid_key=b.userid&#xA;when matched then&#xA;update &#xA;set userid_md = b.usbid,&#xA; machineid = b.machineid&#xA;when not matched then&#xA;insert (userid_key, userid_md, machineid)&#xA;values (b.userid, b.usbid, b.machineid);&#xA;&#xA;&#xA;&#xA;truncate table stg.users;&#xA;truncate table stg.usbid;&#xA;truncate table stg.machineid;&#xA;&#xA;update srd.users&#xA;set userid_md = userid_key where userid_md is null;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table srd.users&#xA;&#xA;insert into srd.users&#xA;select a.userid, '', b.machineid from stg.users as a &#xA;left join stg.machineid as b&#xA;on a.userid=b.userid&#xA;&#xA;update srd.users&#xA;set userid_md = usbid from stg.usbid where stg.usbid.userid=srd.users.userid_key;&#xA;&#xA;update srd.users&#xA;set userid_md = userid_key where userid_md='';&#xA;&#xA;truncate table stg.users;&#xA;truncate table stg.usbid;&#xA;truncate table stg.machineid;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -8550,6 +9348,14 @@ group by a.userid;</property>
       DTS:ObjectName="Constraint 18"
       DTS:To="Package\apps"
       DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 19]"
+      DTS:CreationName=""
+      DTS:DTSID="{235DCDF7-D9B6-44CB-A618-29564EAEF2EE}"
+      DTS:From="Package\session"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 19"
+      DTS:To="Package\users stg -&gt; srd" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -8719,7 +9525,7 @@ group by a.userid;</property>
         <NodeLayout
           Size="115,42"
           Id="Package\userlink"
-          TopLeft="442,0" />
+          TopLeft="278,17" />
         <NodeLayout
           Size="154,42"
           Id="Package\users stg -&gt; srd"
@@ -8928,18 +9734,30 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="500.25,42">
+          TopLeft="393,38">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,36"
+              EndConnector="31,61"
               Start="0,0"
-              End="0,28.5">
+              End="23.5,61">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,28.5" />
+                    End="11.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,0"
+                    Point2="15.5,0"
+                    Point3="15.5,4" />
+                  <mssgle:LineSegment
+                    End="15.5,57" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15.5,57"
+                    Point2="15.5,61"
+                    Point3="19.5,61" />
+                  <mssgle:LineSegment
+                    End="23.5,61" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9356,6 +10174,38 @@ group by a.userid;</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="113,42"
+          Id="Package\session"
+          TopLeft="557,17" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="557,38">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-56,40"
+              Start="0,0"
+              End="-56,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-52,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-52,0"
+                    Point2="-56,0"
+                    Point3="-56,4" />
+                  <mssgle:LineSegment
+                    End="-56,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10010,7 +10860,7 @@ group by a.userid;</property>
     design-time-name="Package\message">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="142,42"
           Id="Package\message\ODBC Source"
@@ -10054,9 +10904,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10078,9 +10926,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10365,7 +11211,7 @@ group by a.userid;</property>
     design-time-name="Package\userlink">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="165,42"
           Id="Package\userlink\Data Conversion 1"
@@ -10421,9 +11267,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10445,9 +11289,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10469,9 +11311,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10505,9 +11345,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10541,9 +11379,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10577,9 +11413,7 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10613,6 +11447,95 @@ group by a.userid;</property>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\userlink\OLE DB Destination 2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\session">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\session\Data Conversion 2"
+          TopLeft="13,260" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\session\session"
+          TopLeft="28,170" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\session\OLE DB Destination 2"
+          TopLeft="14,370" />
+        <EdgeLayout
+          Id="Package\session.Paths[Data Conversion Output]"
+          TopLeft="97.5,302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\session.Paths[ODBC Source Output]"
+          TopLeft="84.5,212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,48"
+              Start="0,0"
+              End="11,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="7,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,24"
+                    Point2="11,24"
+                    Point3="11,28" />
+                  <mssgle:LineSegment
+                    End="11,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\session\OLE DB Destination 2">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
