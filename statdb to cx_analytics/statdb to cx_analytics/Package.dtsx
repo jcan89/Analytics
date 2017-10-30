@@ -11,19 +11,19 @@
   DTS:LocaleID="1053"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="36"
-  DTS:VersionGUID="{BCBC60A4-6FAC-40C3-A5CB-C9244A277533}">
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{EEBD804F-D2DE-462B-9F59-8961D044C4F6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+      DTS:refId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
       DTS:CreationName="OLEDB"
       DTS:DTSID="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-      DTS:ObjectName="SESQLSRV06.cx_analytics">
+      DTS:ObjectName="SESQLSRV08.tobii_analytics">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=SESQLSRV06;Initial Catalog=cx_analytics;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=SESQLSRV08;Initial Catalog=tobii_analytics;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -33,11 +33,11 @@
       DTS:ObjectName="statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="server=statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com;uid=powerbi;Dsn=StatisticsDB32;Driver={Amazon Redshift (x86)};boolsaschar=1;byteaaslongvarbinary=0;database=statistics;epwd=AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAjV8U5tcvvkSk83TiSy1b/wAAAAACAAAAAAAQZgAAAAEAACAAAACYgfMmMO5A70p4TAteiSLvO1PUworwJaR7Cbiz7vfi7AAAAAAOgAAAAAIAACAAAAD7IsTq4t+L+xfLYPZZTsuJ4+/uWnCSZbNkdBT+cwsPbCAAAAAlCTuf4F61TopURZtPsNdsAAuxZUfEmYlbP72gLw7Xw0AAAACtL05yiGD0t1TIKM+/eKNdjgo2RPdklg7Glba8AVrpODT0mhiMi4TLfUrUmv3P3mUvG6KFJqvI/MtIPBht2Fp0;fetch=100;maxbytea=255;maxlongvarchar=8190;maxvarchar=255;port=5439;singlerowmode=1;sslmode=require;systemwideencryption=0;textaslongvarchar=1;usedeclarefetch=0;usemultiplestatements=0;useunicode=1;">
+          DTS:ConnectionString="uid=powerbi;Dsn=Statisticsdb;">
           <DTS:Password
             DTS:Name="pwd"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIdMVtq4jQ0ueNxx8lfN6mAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAAmwLu3W9h2wVyWPNeJKyFbAAAAAASAAACgAAAAEAAAADoZf/TWmagUpAZuAN218OIoAAAA9ZCZGTOwT8TVrm9nY85ZWCJjkvqDSQk4lpp1cCvGtB0o2FTI8AaoJxQAAAAzHVn9cN4+USCf4xMkQVuMRpv9sQ</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAIdMVtq4jQ0ueNxx8lfN6mAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAALySG4dknJtOdfV1/f86dBAAAAAASAAACgAAAAEAAAALNri2WqamXgWO7hvYBuuJQoAAAAm6sM8hfFgFFTi4D+lvFu+p1M11KKFA2eAV0g05XvxK85Xwcu5OrnNBQAAACULOYK3yirVDbxE70UY1HlaEVBdQ</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -558,8 +558,8 @@ key in (select distinct(key) from view$split where target='apps');</property>
               <connections>
                 <connection
                   refId="Package\apps\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -778,27 +778,6 @@ key in (select distinct(key) from view$split where target='apps');</property>
                   synchronousInputId="Package\Campaigns\Data Conversion.Inputs[Data Conversion Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of userid]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of userid]"
-                      name="Copy of userid"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[userid]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
                       refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of app]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
@@ -820,41 +799,20 @@ key in (select distinct(key) from view$split where target='apps');</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of sessionid]"
+                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of args]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="50"
-                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of sessionid]"
-                      name="Copy of sessionid"
+                      length="1024"
+                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of args]"
+                      name="Copy of args"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[sessionid]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of utceventtime]"
-                      dataType="dbTimeStamp2"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of utceventtime]"
-                      name="Copy of utceventtime"
-                      scale="6"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[utceventtime]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[args]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -883,20 +841,62 @@ key in (select distinct(key) from view$split where target='apps');</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of args]"
+                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of sessionid]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      length="1024"
-                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of args]"
-                      name="Copy of args"
+                      length="50"
+                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of sessionid]"
+                      name="Copy of sessionid"
                       truncationRowDisposition="FailComponent">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[args]}</property>
+                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[sessionid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of userid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of userid]"
+                      name="Copy of userid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[userid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of utceventtime]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Campaigns\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of utceventtime]"
+                      name="Copy of utceventtime"
+                      scale="6"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Campaigns\ODBC Source.Outputs[ODBC Source Output].Columns[utceventtime]}</property>
                         <property
                           dataType="System.Boolean"
                           description="Indicates whether the column uses the faster, locale-neutral parsing routines."
@@ -1220,8 +1220,8 @@ key in (select distinct(key) from view$split where target='campaigns');</propert
               <connections>
                 <connection
                   refId="Package\Campaigns\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -1365,7 +1365,7 @@ key in (select distinct(key) from view$split where target='campaigns');</propert
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-          SQLTask:SqlStatementSource="merge srd.campaigns as a&#xA;using (select * from stg.campaigns ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;truncate table stg.eyetracker;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="merge srd.campaigns as a&#xA;using (select * from stg.campaigns ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;truncate table stg.campaigns;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1883,8 +1883,8 @@ args in (select distinct(args) from view$split where target='eyetracker');</prop
               <connections>
                 <connection
                   refId="Package\Eyetracker\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -2947,7 +2947,7 @@ args in (select distinct(args) from view$split where target='gaming');</property
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[stg].[gameing]</property>
+                  name="OpenRowset">[stg].[gaming]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -2990,8 +2990,8 @@ args in (select distinct(args) from view$split where target='gaming');</property
               <connections>
                 <connection
                   refId="Package\gaming\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3164,8 +3164,8 @@ args in (select distinct(args) from view$split where target='gaming');</property
               <connections>
                 <connection
                   refId="Package\gaming\OLE DB Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3319,7 +3319,24 @@ args in (select distinct(args) from view$split where target='gaming');</property
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-          SQLTask:SqlStatementSource="merge srd.gameing as a&#xA;using (select * from stg.gameing ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;&#xA;truncate table stg.gameing;&#xA;&#xA;&#xA;merge srd.gaming as a&#xA;using ( select&#xA;c.userid_key as userid_key,&#xA;d.machineid,&#xA;d.app as app,&#xA;d.sessionid as sessionid,&#xA;d.utceventtime as utceventtime,&#xA;d.[key] as [key],&#xA;d.args as args&#xA;from  stg.gamingtobiservice as d &#xA;left join srd.users as  c&#xA;on c.machineid = d.machineid) as b&#xA;on &#xA;a.sessionid =b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (case when b.userid_key is null then b.machineid else b.userid_key end, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA; &#xA;truncate table stg.gamingtobiservice;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="merge srd.gaming as a&#xA;using (select * from stg.gaming ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;truncate table stg.gaming;&#xA;&#xA;&#xA;merge srd.gaming as a&#xA;using ( select&#xA;c.userid_key as userid_key,&#xA;d.machineid,&#xA;d.app as app,&#xA;d.sessionid as sessionid,&#xA;d.utceventtime as utceventtime,&#xA;d.[key] as [key],&#xA;d.args as args&#xA;from  stg.gamingtobiservice as d &#xA;left join srd.users as  c&#xA;on c.machineid = d.machineid) as b&#xA;on &#xA;a.sessionid =b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (case when b.userid_key is null then b.machineid else b.userid_key end, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA; &#xA; truncate table stg.gamingtobiservice;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Handeling indexes"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{256012a6-7c57-46c6-9456-9bf79679db4b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Handeling indexes"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
+          SQLTask:SqlStatementSource="-- Reading how fragemnted each index is&#xA; truncate table srd.[index];&#xA; insert into srd.[index]&#xA; SELECT &#xA; dbindexes.[index_id],&#xA;dbindexes.[name] as 'Index',&#xA;dbtables.[name] as 'Table',&#xA;indexstats.avg_fragmentation_in_percent&#xA;FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, NULL) AS indexstats&#xA;INNER JOIN sys.tables dbtables on dbtables.[object_id] = indexstats.[object_id]&#xA;INNER JOIN sys.schemas dbschemas on dbtables.[schema_id] = dbschemas.[schema_id]&#xA;INNER JOIN sys.indexes AS dbindexes ON dbindexes.[object_id] = indexstats.[object_id]&#xA;AND indexstats.index_id = dbindexes.index_id&#xA;WHERE indexstats.database_id = DB_ID() and dbschemas.[name]='srd' and dbindexes.[name] is not null &#xA;ORDER BY indexstats.avg_fragmentation_in_percent desc&#xA;&#xA;&#xA;--  Restructure all indexes with fragmentation &gt;= 30 % &#xA;Select *&#xA;Into   #Temp&#xA;From   srd.[index] where &#xA;avg_fragmentation_in_percent &gt;= 30&#xA;&#xA;Declare @name nvarchar(200), @table nvarchar(200)&#xA;    &#xA;While (Select Count(*) From #Temp) &gt; 0&#xA;Begin&#xA;&#xA;    Select Top 1 @name = a.[index], @table = a.[table] From #Temp as a&#xA;&#xA;    --Do some processing here&#xA;&#x9;declare @alter nvarchar(200)&#xA;&#x9;set @alter=&#x9;'alter index '+ @name + ' on srd.' + @table + ' reorganize' &#xA;&#x9;exec(@alter);&#xA;    Delete #Temp Where [index] = @name&#xA;&#xA;End&#xA;&#xA;drop table #Temp;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -3836,8 +3853,8 @@ key in (select distinct(key) from view$split where target='interactions');</prop
               <connections>
                 <connection
                   refId="Package\interactions\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -3976,7 +3993,7 @@ key in (select distinct(key) from view$split where target='interactions');</prop
       DTS:LocaleID="-1"
       DTS:ObjectName="interactions stg -&gt; srd"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -4498,8 +4515,8 @@ key in (select distinct(key) from view$split where target='menu');</property>
               <connections>
                 <connection
                   refId="Package\menu\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5160,8 +5177,8 @@ key in (select distinct(key) from view$split where target='message');</property>
               <connections>
                 <connection
                   refId="Package\message\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5300,7 +5317,7 @@ key in (select distinct(key) from view$split where target='message');</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="message stg -&gt; srd"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5822,8 +5839,8 @@ a.key;</property>
               <connections>
                 <connection
                   refId="Package\passive\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -5960,12 +5977,12 @@ a.key;</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="passive stg -&gt; srd"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-          SQLTask:SqlStatementSource="merge srd.passive as a&#xA;using (select * from stg.passive ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], no_times)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.no_times);&#xA;&#xA;truncate table stg.passive" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="merge srd.passive as a&#xA;using (select * from stg.passive ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], no_times)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.no_times);&#xA;&#xA;truncate table stg.passive;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -6328,8 +6345,8 @@ a.key;</property>
               <connections>
                 <connection
                   refId="Package\session\OLE DB Destination 2.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -6406,20 +6423,17 @@ a.key;</property>
                     isUsed="True">
                     <externalMetadataColumn
                       refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="36"
                       name="userid" />
                     <externalMetadataColumn
                       refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[sessionid]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="36"
                       name="sessionid" />
                     <externalMetadataColumn
                       refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[app]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="64"
                       name="app" />
                     <externalMetadataColumn
@@ -6428,8 +6442,7 @@ a.key;</property>
                       name="version" />
                     <externalMetadataColumn
                       refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[machineid]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="36"
                       name="machineid" />
                     <externalMetadataColumn
@@ -6446,8 +6459,7 @@ a.key;</property>
                       name="sessioncounthint" />
                     <externalMetadataColumn
                       refId="Package\session\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[acceptancereason]"
-                      codePage="1252"
-                      dataType="str"
+                      dataType="wstr"
                       length="64"
                       name="acceptancereason" />
                   </externalMetadataColumns>
@@ -6496,7 +6508,7 @@ a.key;</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   expressionType="Notify"
-                  name="SqlCommand">select * from session where app='EyeXEngine' and utcstarttime &gt;='2016-10-01'</property>
+                  name="SqlCommand">select * from session where app='EyeXEngine' and utcstarttime &gt;=getdate()-10;</property>
                 <property
                   dataType="System.Int32"
                   description="Specify the number of rows fetched per batch."
@@ -7281,8 +7293,8 @@ and args in  (select distinct(args) from view$split where target='setup');</prop
               <connections>
                 <connection
                   refId="Package\setup\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -7421,7 +7433,7 @@ and args in  (select distinct(args) from view$split where target='setup');</prop
       DTS:LocaleID="-1"
       DTS:ObjectName="setup stg -&gt; srd"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -7900,7 +7912,7 @@ key in (select distinct(key) from view$split where target='trouble');</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[stg].[eyetracker]</property>
+                  name="OpenRowset">[stg].[trouble]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -7943,8 +7955,8 @@ key in (select distinct(key) from view$split where target='trouble');</property>
               <connections>
                 <connection
                   refId="Package\trouble\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -8083,12 +8095,29 @@ key in (select distinct(key) from view$split where target='trouble');</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="trouble stg -&gt; srd"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
           SQLTask:SqlStatementSource="merge srd.trouble as a&#xA;using (select * from stg.trouble ) as b&#xA;on a.sessionid=b.sessionid and&#xA;a.utceventtime = b.utceventtime and&#xA;a.[key]=b.[key]&#xA;when not matched then&#xA;insert (userid_key, app, sessionid, utceventtime, [key], args)&#xA;values (b.userid_key, b.app, b.sessionid, b.utceventtime, b.[key], b.args);&#xA;&#xA;truncate table stg.trouble;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Partition"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b152db0e-ac6a-4e82-85ff-2e5ca8ab26da}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Partition"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2016; © 2015 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
+          SQLTask:SqlStatementSource="-- AUTOMATE HANDELING OF PARTITIONS (SLIDING WINDOW)&#xA;-----------------------------------------------------------------------&#xA;-- THIS PART IS USED TO TRUNCATE ALL OLD DATA FOR THE PARTITION [date]&#xA;-----------------------------------------------------------------------&#xA;-- Get Todays Date&#xA;----------------------------------------------------------------------------------&#xA;declare @today int&#xA;set @today = datepart(Day, GETDATE())&#xA;-- If today is the first day of the month (We truncate the oldest partition)&#xA;if @today = 1&#xA;BEGIN&#xA;-- Select all tables in schema srd, Theese should be truncated&#xA;select  TABLE_NAME &#xA;into #tables&#xA;from  INFORMATION_SCHEMA.TABLES &#xA; where TABLE_SCHEMA='srd'&#xA; -- Find the oldes partion, that will be truncated&#xA;declare @partition nvarchar(1), @table nvarchar(200), @string nvarchar(400)&#xA;select @partition  = boundary_id from sys.partition_range_values where function_id='65536' and value in(select min(value) from sys.partition_range_values  where function_id='65536')&#xA;-- For each row in #tables&#xA;While (Select Count(*) From #tables) &gt; 0&#xA;begin&#xA;    Select Top 1 @table = [TABLE_NAME] From #tables&#xA;-- creating the string to be used to truncate the right table and partition&#xA;set @string ='TRUNCATE TABLE srd.'+@table+' WITH  (PARTITIONS ('+@partition+'))'&#xA;print @string&#xA;exec(@string)&#xA;delete #tables where [TABLE_NAME]=@table&#xA;end &#xA;-- Drop the temporary table&#xA;drop table #tables;&#xA;&#xA;----------------------------------------------------------------------------------&#xA;-- THIS PART IS USED TO ALTER THE PARTION FUNCTION TO ADJUST TO THE SLIDING WINDOW&#xA;----------------------------------------------------------------------------------&#xA;-- Remove the oldest partition&#xA;----------------------------------------------------------------------------------&#xA;DECLARE @date sql_variant, @date2 nvarchar(10), @mergerange nvarchar(200)&#xA;select @date = min(value) from sys.partition_range_values  where function_id='65536'&#xA;set @date2 = CONVERT(nvarchar, @date, 121)&#xA;print @date2&#xA;set @mergerange ='ALTER PARTITION FUNCTION  [date]() MERGE RANGE ('''+@date2+''')'&#xA;print @mergerange&#xA;exec(@mergerange) ;&#xA;----------------------------------------------------------------------------------&#xA;-- Defining the file_group not used, to be used for the new partition.&#xA;----------------------------------------------------------------------------------&#xA;-- SELECT ALL FILE_GROUPS EXISTING&#xA;SELECT name &#xA;into #nextused FROM  sys.filegroups &#xA;-- Declaring the variables needed for the script&#xA;DECLARE @alterpartition nvarchar(200), @nextused nvarchar(10), @TableName sysname = 'srd.gaming' &#xA;-- Selecting the only file_group not used (Since the statement above drops it)&#xA;select @nextused = a.name from #nextused as a where a.name  not in (&#xA;SELECT  fg.name  &#xA;FROM sys.partitions p &#xA;INNER JOIN sys.allocation_units au ON au.container_id = p.hobt_id &#xA;INNER JOIN sys.filegroups fg ON fg.data_space_id = au.data_space_id WHERE p.object_id = OBJECT_ID(@TableName) )&#xA;set @alterpartition = 'ALTER PARTITION SCHEME [date] NEXT USED '+ @nextused&#xA;exec(@alterpartition) &#xA;drop table #nextused;&#xA;----------------------------------------------------------------------------------&#xA;-- Defining the limit of the new partition&#xA;----------------------------------------------------------------------------------&#xA;DECLARE @newdate sql_variant, @newdate2 nvarchar(10), @newdate3 nvarchar(10), @splitrange nvarchar(200)&#xA;select @newdate = max(value) from sys.partition_range_values  where function_id='65536' &#xA;set @newdate2=  convert(nvarchar,(dateadd(day, 2, CONVERT(nvarchar, @newdate, 121))), 121)&#xA;SELECT @newdate3 = EOMONTH ( @newdate2 )&#xA;set @splitrange = 'ALTER PARTITION FUNCTION  [date]() split range ('''+@newdate3+''')'&#xA;exec(@splitrange)&#xA;&#xA;end;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -8209,338 +8238,6 @@ key in (select distinct(key) from view$split where target='trouble');</property>
               </outputs>
             </component>
             <component
-              refId="Package\userlink\Data Conversion 1"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Data Conversion"
-              name="Data Conversion 1"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\userlink\Data Conversion 1.Inputs[Data Conversion Input]"
-                  name="Data Conversion Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\userlink\Data Conversion 1.Inputs[Data Conversion Input].Columns[userid]"
-                      cachedDataType="wstr"
-                      cachedLength="36"
-                      cachedName="userid"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Output].Columns[userid]" />
-                    <inputColumn
-                      refId="Package\userlink\Data Conversion 1.Inputs[Data Conversion Input].Columns[machineid]"
-                      cachedDataType="wstr"
-                      cachedLength="36"
-                      cachedName="machineid"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Output].Columns[machineid]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output]"
-                  exclusionGroup="1"
-                  name="Data Conversion Output"
-                  synchronousInputId="Package\userlink\Data Conversion 1.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of userid]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="36"
-                      lineageId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of userid]"
-                      name="Copy of userid"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\userlink\machineid.Outputs[ODBC Source Output].Columns[userid]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of machineid]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="36"
-                      lineageId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of machineid]"
-                      name="Copy of machineid"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\userlink\machineid.Outputs[ODBC Source Output].Columns[machineid]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Data Conversion Error Output"
-                  synchronousInputId="Package\userlink\Data Conversion 1.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\userlink\Data Conversion 2"
-              componentClassID="Microsoft.DataConvert"
-              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
-              description="Data Conversion"
-              name="Data Conversion 2"
-              usesDispositions="true">
-              <inputs>
-                <input
-                  refId="Package\userlink\Data Conversion 2.Inputs[Data Conversion Input]"
-                  name="Data Conversion Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\userlink\Data Conversion 2.Inputs[Data Conversion Input].Columns[userid]"
-                      cachedDataType="wstr"
-                      cachedLength="36"
-                      cachedName="userid"
-                      lineageId="Package\userlink\usbid 1.Outputs[ODBC Source Output].Columns[userid]" />
-                  </inputColumns>
-                  <externalMetadataColumns />
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Output]"
-                  exclusionGroup="1"
-                  name="Data Conversion Output"
-                  synchronousInputId="Package\userlink\Data Conversion 2.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of userid]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      length="36"
-                      lineageId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of userid]"
-                      name="Copy of userid"
-                      truncationRowDisposition="FailComponent">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the input column used as the source of data for the conversion."
-                          name="SourceInputColumnLineageID">#{Package\userlink\usbid 1.Outputs[ODBC Source Output].Columns[userid]}</property>
-                        <property
-                          dataType="System.Boolean"
-                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
-                          name="FastParse">false</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="Data Conversion Error Output"
-                  synchronousInputId="Package\userlink\Data Conversion 2.Inputs[Data Conversion Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\userlink\machineid"
-              componentClassID="Attunity.SSISODBCSrc"
-              contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;6"
-              description="ODBC Source"
-              name="machineid"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="The name of the table to be fetched."
-                  expressionType="Notify"
-                  name="TableName"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand">select userid, machineid from session
-where app='EyeXEngine' and utcstarttime &gt;='2016-10-01'
-and left(version,4)&gt;=1018
-group by userid, machineid;</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the number of rows fetched per batch."
-                  expressionType="Notify"
-                  name="BatchSize">1000</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determines the chunk size allocation for LOB columns"
-                  expressionType="Notify"
-                  name="LobChunkSize">32768</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
-                  expressionType="Notify"
-                  name="ExposeCharColumnsAsUnicode">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
-                  expressionType="Notify"
-                  name="StatementTimeout">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The code page to use when code page information is unavailable from the data source."
-                  expressionType="Notify"
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Int32"
-                  description="The mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="The method used for fetching data."
-                  expressionType="Notify"
-                  name="FetchMethod"
-                  typeConverter="FetchMethod">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="The ODBC C data type for binding numeric data."
-                  expressionType="Notify"
-                  name="BindNumericAs"
-                  typeConverter="BindNumericAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
-                  expressionType="Notify"
-                  name="BindCharColumnsAs"
-                  typeConverter="BindCharColumnsAs">0</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\userlink\machineid.Connections[ODBCConnection]"
-                  connectionManagerID="Package.ConnectionManagers[statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi]"
-                  connectionManagerRefId="Package.ConnectionManagers[statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi]"
-                  description="The ODBC runtime connection"
-                  name="ODBCConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\userlink\machineid.Outputs[ODBC Source Output]"
-                  errorRowDisposition="FailComponent"
-                  name="ODBC Source Output"
-                  truncationRowDisposition="FailComponent">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Output].Columns[userid]"
-                      dataType="wstr"
-                      externalMetadataColumnId="Package\userlink\machineid.Outputs[ODBC Source Output].ExternalColumns[userid]"
-                      length="36"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Output].Columns[userid]"
-                      name="userid" />
-                    <outputColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Output].Columns[machineid]"
-                      dataType="wstr"
-                      externalMetadataColumnId="Package\userlink\machineid.Outputs[ODBC Source Output].ExternalColumns[machineid]"
-                      length="36"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Output].Columns[machineid]"
-                      name="machineid" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Output].ExternalColumns[userid]"
-                      dataType="wstr"
-                      length="36"
-                      name="userid" />
-                    <externalMetadataColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Output].ExternalColumns[machineid]"
-                      dataType="wstr"
-                      length="36"
-                      name="machineid" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\userlink\machineid.Outputs[ODBC Source Error Output]"
-                  isErrorOut="true"
-                  name="ODBC Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[userid]"
-                      dataType="wstr"
-                      externalMetadataColumnId="Package\userlink\machineid.Outputs[ODBC Source Output].ExternalColumns[userid]"
-                      length="36"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[userid]"
-                      name="userid" />
-                    <outputColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[machineid]"
-                      dataType="wstr"
-                      externalMetadataColumnId="Package\userlink\machineid.Outputs[ODBC Source Output].ExternalColumns[machineid]"
-                      length="36"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[machineid]"
-                      name="machineid" />
-                    <outputColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\userlink\machineid.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\userlink\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -8599,8 +8296,8 @@ group by userid, machineid;</property>
               <connections>
                 <connection
                   refId="Package\userlink\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
+                  connectionManagerID="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
+                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV08.tobii_analytics]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -8668,248 +8365,6 @@ group by userid, machineid;</property>
               </outputs>
             </component>
             <component
-              refId="Package\userlink\OLE DB Destination 1"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination 1"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[stg].[machineid]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\userlink\OLE DB Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[Copy of userid]"
-                      cachedDataType="wstr"
-                      cachedLength="36"
-                      cachedName="Copy of userid"
-                      externalMetadataColumnId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
-                      lineageId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of userid]" />
-                    <inputColumn
-                      refId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[Copy of machineid]"
-                      cachedDataType="wstr"
-                      cachedLength="36"
-                      cachedName="Copy of machineid"
-                      externalMetadataColumnId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[machineid]"
-                      lineageId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output].Columns[Copy of machineid]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
-                      dataType="wstr"
-                      length="36"
-                      name="userid" />
-                    <externalMetadataColumn
-                      refId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[machineid]"
-                      dataType="wstr"
-                      length="36"
-                      name="machineid" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\userlink\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\userlink\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\userlink\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\userlink\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\userlink\OLE DB Destination 2"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination 2"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[stg].[users]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\userlink\OLE DB Destination 2.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  connectionManagerRefId="Package.ConnectionManagers[SESQLSRV06.cx_analytics]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\userlink\OLE DB Destination 2.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\userlink\OLE DB Destination 2.Inputs[OLE DB Destination Input].Columns[Copy of userid]"
-                      cachedDataType="wstr"
-                      cachedLength="36"
-                      cachedName="Copy of userid"
-                      externalMetadataColumnId="Package\userlink\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
-                      lineageId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Output].Columns[Copy of userid]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\userlink\OLE DB Destination 2.Inputs[OLE DB Destination Input].ExternalColumns[userid]"
-                      dataType="wstr"
-                      length="36"
-                      name="userid" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\userlink\OLE DB Destination 2.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\userlink\OLE DB Destination 2.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\userlink\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\userlink\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\userlink\OLE DB Destination 2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\userlink\usbid"
               componentClassID="Attunity.SSISODBCSrc"
               contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;6"
@@ -8931,8 +8386,8 @@ group by userid, machineid;</property>
 Left  join entry as b
 on a.sessionid =b.sessionid 
 where app='EyeXEngine'  and b.[key]='usb.device.id' and 
-a.utcstarttime &gt;='2016-10-01' and
-b.utceventtime &gt;='2016-10-01'
+a.utcstarttime &gt;=getdate()-10 and
+b.utceventtime &gt;=getdate()-10
 and (args&lt;&gt;'["1729C9AFA1EE566828EF50B182B8124708010BFF5FD5F5550B23A28B39804B02"]'
 or args &lt;&gt;'["83285FAECC76AA6AA98883B52EDC6179D7FA829FE3A281A05166C5C5067D8680"]' ) 
 group by userid, args;</property>
@@ -9062,137 +8517,6 @@ group by userid, args;</property>
                 </output>
               </outputs>
             </component>
-            <component
-              refId="Package\userlink\usbid 1"
-              componentClassID="Attunity.SSISODBCSrc"
-              contactInfo="ODBC Source;Connector for Open Database Connectivity (ODBC) by Attunity; Attunity Ltd.; All Rights Reserved; http://www.attunity.com;6"
-              description="ODBC Source"
-              name="usbid 1"
-              usesDispositions="true"
-              version="6">
-              <properties>
-                <property
-                  dataType="System.String"
-                  description="The name of the table to be fetched."
-                  expressionType="Notify"
-                  name="TableName"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand">select a.userid  from  session as a
-where app='EyeXEngine' and utcstarttime &gt;='2016-10-01'
-group by a.userid;</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specify the number of rows fetched per batch."
-                  expressionType="Notify"
-                  name="BatchSize">1000</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determines the chunk size allocation for LOB columns"
-                  expressionType="Notify"
-                  name="LobChunkSize">32768</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
-                  expressionType="Notify"
-                  name="ExposeCharColumnsAsUnicode">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
-                  expressionType="Notify"
-                  name="StatementTimeout">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="The code page to use when code page information is unavailable from the data source."
-                  expressionType="Notify"
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Int32"
-                  description="The mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="The method used for fetching data."
-                  expressionType="Notify"
-                  name="FetchMethod"
-                  typeConverter="FetchMethod">1</property>
-                <property
-                  dataType="System.Int32"
-                  description="The ODBC C data type for binding numeric data."
-                  expressionType="Notify"
-                  name="BindNumericAs"
-                  typeConverter="BindNumericAs">0</property>
-                <property
-                  dataType="System.Int32"
-                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
-                  expressionType="Notify"
-                  name="BindCharColumnsAs"
-                  typeConverter="BindCharColumnsAs">0</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\userlink\usbid 1.Connections[ODBCConnection]"
-                  connectionManagerID="Package.ConnectionManagers[statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi]"
-                  connectionManagerRefId="Package.ConnectionManagers[statistics-db.co422kywpqrj.eu-central-1.redshift.amazonaws.com.statistics.powerbi]"
-                  description="The ODBC runtime connection"
-                  name="ODBCConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\userlink\usbid 1.Outputs[ODBC Source Output]"
-                  errorRowDisposition="FailComponent"
-                  name="ODBC Source Output"
-                  truncationRowDisposition="FailComponent">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\usbid 1.Outputs[ODBC Source Output].Columns[userid]"
-                      dataType="wstr"
-                      externalMetadataColumnId="Package\userlink\usbid 1.Outputs[ODBC Source Output].ExternalColumns[userid]"
-                      length="36"
-                      lineageId="Package\userlink\usbid 1.Outputs[ODBC Source Output].Columns[userid]"
-                      name="userid" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\userlink\usbid 1.Outputs[ODBC Source Output].ExternalColumns[userid]"
-                      dataType="wstr"
-                      length="36"
-                      name="userid" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output]"
-                  isErrorOut="true"
-                  name="ODBC Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output].Columns[userid]"
-                      dataType="wstr"
-                      externalMetadataColumnId="Package\userlink\usbid 1.Outputs[ODBC Source Output].ExternalColumns[userid]"
-                      length="36"
-                      lineageId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output].Columns[userid]"
-                      name="userid" />
-                    <outputColumn
-                      refId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\userlink\usbid 1.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
           </components>
           <paths>
             <path
@@ -9201,30 +8525,10 @@ group by a.userid;</property>
               name="Data Conversion Output"
               startId="Package\userlink\Data Conversion.Outputs[Data Conversion Output]" />
             <path
-              refId="Package\userlink.Paths[Data Conversion Output1]"
-              endId="Package\userlink\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
-              name="Data Conversion Output"
-              startId="Package\userlink\Data Conversion 1.Outputs[Data Conversion Output]" />
-            <path
-              refId="Package\userlink.Paths[Data Conversion Output2]"
-              endId="Package\userlink\OLE DB Destination 2.Inputs[OLE DB Destination Input]"
-              name="Data Conversion Output"
-              startId="Package\userlink\Data Conversion 2.Outputs[Data Conversion Output]" />
-            <path
               refId="Package\userlink.Paths[ODBC Source Output]"
               endId="Package\userlink\Data Conversion.Inputs[Data Conversion Input]"
               name="ODBC Source Output"
               startId="Package\userlink\usbid.Outputs[ODBC Source Output]" />
-            <path
-              refId="Package\userlink.Paths[ODBC Source Output1]"
-              endId="Package\userlink\Data Conversion 1.Inputs[Data Conversion Input]"
-              name="ODBC Source Output"
-              startId="Package\userlink\machineid.Outputs[ODBC Source Output]" />
-            <path
-              refId="Package\userlink.Paths[ODBC Source Output2]"
-              endId="Package\userlink\Data Conversion 2.Inputs[Data Conversion Input]"
-              name="ODBC Source Output"
-              startId="Package\userlink\usbid 1.Outputs[ODBC Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -9243,7 +8547,7 @@ group by a.userid;</property>
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{A1164ED1-9E37-42B3-8FA2-83FE5F45963A}"
-          SQLTask:SqlStatementSource="truncate table srd.users&#xA;&#xA;insert into srd.users&#xA;select a.userid, '', b.machineid from stg.users as a &#xA;left join stg.machineid as b&#xA;on a.userid=b.userid&#xA;&#xA;update srd.users&#xA;set userid_md = usbid from stg.usbid where stg.usbid.userid=srd.users.userid_key;&#xA;&#xA;update srd.users&#xA;set userid_md = userid_key where userid_md='';&#xA;&#xA;truncate table stg.users;&#xA;truncate table stg.usbid;&#xA;truncate table stg.machineid;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="create table #tempusers&#xA;(userid nvarchar(36),&#xA; usbid nvarchar(70),&#xA; machineid nvarchar(70))&#xA;&#xA;insert into #tempusers&#xA;select a.userid, '', b.machineid from [stg].[session] as a &#xA;left join stg.[session] as b&#xA;on a.userid=b.userid&#xA;where left(b.[version],4)&gt;=1018&#xA;group by a.userid, b.machineid&#xA;&#xA;update #tempusers&#xA;set usbid =stg.usbid.usbid from stg.usbid where stg.usbid.userid=#tempusers.userid&#xA;&#xA;&#xA;update #tempusers&#xA;set usbid = userid where usbid=''&#xA;&#xA;update srd.users&#xA;set userid_md = usbid from #tempusers where srd.users.userid_key = #tempusers.userid&#xA;&#xA;update srd.users&#xA;set machineid = #tempusers.machineid from #tempusers where srd.users.userid_key = #tempusers.userid&#xA;&#xA;&#xA;merge srd.users as a&#xA;using (select * from #tempusers) as b&#xA;on a.userid_key = b.userid and a.userid_md = b.usbid  &#xA;when not matched then&#xA;insert (userid_key, userid_md, machineid)&#xA;values (b.userid,b.usbid,b.machineid);&#xA;&#xA;&#xA;&#xA;drop table #tempusers;&#xA;&#xA;&#xA;merge srd.session as a&#xA;using (select * from stg.session ) as b&#xA;on a.sessionid=b.sessionid&#xA;when not matched then&#xA;insert (sessionid,app,[version], userid, machineid, utcstarttime, utctzoffsetmin, sessioncounthint, acceptancereason )&#xA;values (b.sessionid,b.app,b.[version], b.userid, b.machineid, b.utcstarttime, b.utctzoffsetmin, b.sessioncounthint, b.acceptancereason );&#xA;&#xA;truncate table stg.session;&#xA;truncate table stg.usbid;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
   </DTS:Executables>
@@ -9275,11 +8579,12 @@ group by a.userid;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 10]"
       DTS:CreationName=""
-      DTS:DTSID="{478C5711-7227-4972-A7D0-3F36FC963C61}"
-      DTS:From="Package\setup stg -&gt; srd"
+      DTS:DTSID="{9275E46B-1CB9-4DB2-8C5B-DD093EF77B1E}"
+      DTS:From="Package\setup"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 10"
-      DTS:To="Package\interactions" />
+      DTS:To="Package\interactions"
+      DTS:Value="2" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
       DTS:CreationName=""
@@ -9299,11 +8604,12 @@ group by a.userid;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 13]"
       DTS:CreationName=""
-      DTS:DTSID="{3D71ADE0-3CC5-420A-BF48-AE976ECF7E79}"
-      DTS:From="Package\trouble stg -&gt; srd"
+      DTS:DTSID="{4E46BCAF-2F54-4B64-AE5F-BD91C3EE5CFB}"
+      DTS:From="Package\trouble"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 13"
-      DTS:To="Package\message" />
+      DTS:To="Package\message"
+      DTS:Value="2" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 14]"
       DTS:CreationName=""
@@ -9333,7 +8639,7 @@ group by a.userid;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 17]"
       DTS:CreationName=""
-      DTS:DTSID="{E0916B3F-AFDF-48E4-B53A-A160B262731D}"
+      DTS:DTSID="{E6905700-F5A5-4191-8A83-F5F672FC70B1}"
       DTS:From="Package\users stg -&gt; srd"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 17"
@@ -9342,7 +8648,7 @@ group by a.userid;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 18]"
       DTS:CreationName=""
-      DTS:DTSID="{0C9EC499-B142-4C61-8FD4-4498FA6387C3}"
+      DTS:DTSID="{49A1C23E-30BD-460F-8BD7-8A0F6DB51FF1}"
       DTS:From="Package\users stg -&gt; srd"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 18"
@@ -9373,6 +8679,86 @@ group by a.userid;</property>
       DTS:ObjectName="Constraint 2 1"
       DTS:To="Package\menu stg -&gt; srd" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{F74CE4F3-3349-4A86-9949-0814FE0DC012}"
+      DTS:From="Package\interactions stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 21]"
+      DTS:CreationName=""
+      DTS:DTSID="{41FBCE6A-198E-40A0-A58A-59B3E2E1FA36}"
+      DTS:From="Package\message stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 21"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 22]"
+      DTS:CreationName=""
+      DTS:DTSID="{8FEAB851-6CE9-45F2-B817-EF1007DBBB19}"
+      DTS:From="Package\menu stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 22"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 23]"
+      DTS:CreationName=""
+      DTS:DTSID="{CB83B0A8-2FA7-439F-B5A4-150AF1ACBABD}"
+      DTS:From="Package\passive stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 23"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 24]"
+      DTS:CreationName=""
+      DTS:DTSID="{666351AF-A620-4163-8E5E-36B6AC79C799}"
+      DTS:From="Package\Truncate Partition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 24"
+      DTS:To="Package\userlink" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 25]"
+      DTS:CreationName=""
+      DTS:DTSID="{55D8DE36-8CD8-47DC-91E4-5742AABEDE9C}"
+      DTS:From="Package\Truncate Partition"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 25"
+      DTS:To="Package\session" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 26]"
+      DTS:CreationName=""
+      DTS:DTSID="{31E8B67A-149D-462D-A3FF-36954CAA83DD}"
+      DTS:From="Package\setup stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 26"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 27]"
+      DTS:CreationName=""
+      DTS:DTSID="{9CD0574C-90CA-4D5B-AF7C-A107F307D2CC}"
+      DTS:From="Package\gaming stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 27"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 28]"
+      DTS:CreationName=""
+      DTS:DTSID="{AE289546-92F7-4827-96F0-39389C7B87C9}"
+      DTS:From="Package\trouble stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 28"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 29]"
+      DTS:CreationName=""
+      DTS:DTSID="{BBDF6B0E-36D3-4EC0-8568-854C3B583285}"
+      DTS:From="Package\Eyetracker stg -&gt; srd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 29"
+      DTS:To="Package\Handeling indexes" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
       DTS:DTSID="{09c62ece-3e56-48a7-b697-aecd3b9ef08f}"
@@ -9381,10 +8767,28 @@ group by a.userid;</property>
       DTS:ObjectName="Constraint 3"
       DTS:To="Package\setup stg -&gt; srd" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 30]"
+      DTS:CreationName=""
+      DTS:DTSID="{B9012B3C-99C4-4476-AAC9-354B9BF1BD90}"
+      DTS:From="Package\Campaigns"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 30"
+      DTS:To="Package\menu"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 31]"
+      DTS:CreationName=""
+      DTS:DTSID="{13BEC51C-BADD-449D-A04D-8F97CC446D64}"
+      DTS:From="Package\apps"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 31"
+      DTS:To="Package\passive"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
       DTS:CreationName=""
-      DTS:DTSID="{1A3C83CE-D5AA-40C9-9F70-2C09E4099417}"
-      DTS:From="Package\gaming stg -&gt; srd"
+      DTS:DTSID="{1F48651A-EE38-4F21-8325-FD2585C338C6}"
+      DTS:From="Package\gaming"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 4"
       DTS:To="Package\setup"
@@ -9392,19 +8796,20 @@ group by a.userid;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
       DTS:CreationName=""
-      DTS:DTSID="{9C37F4AA-F702-4ED6-A8F9-787672A9BD81}"
-      DTS:From="Package\Eyetracker stg -&gt; srd"
+      DTS:DTSID="{875F7F02-28B4-4AD7-8E5B-3EF85280D21D}"
+      DTS:From="Package\Eyetracker"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 5"
-      DTS:To="Package\trouble" />
+      DTS:To="Package\trouble"
+      DTS:Value="2" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
       DTS:CreationName=""
-      DTS:DTSID="{19E3EB11-1739-4DDE-B50F-061D33AC5EFA}"
+      DTS:DTSID="{2ADA66B0-D2A4-4833-A180-0F8129C48B53}"
       DTS:From="Package\Campaigns stg -&gt; srd"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 6"
-      DTS:To="Package\menu" />
+      DTS:To="Package\Handeling indexes" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
       DTS:CreationName=""
@@ -9416,11 +8821,11 @@ group by a.userid;</property>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
       DTS:CreationName=""
-      DTS:DTSID="{8D9F13E5-D276-41A7-BD2C-8FCF1DFC2101}"
+      DTS:DTSID="{61BEA5AF-5ECE-42C5-87BD-77196B644C09}"
       DTS:From="Package\apps stg -&gt; srd"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 8"
-      DTS:To="Package\passive" />
+      DTS:To="Package\Handeling indexes" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
       DTS:CreationName=""
@@ -9445,117 +8850,129 @@ group by a.userid;</property>
         <NodeLayout
           Size="101,42"
           Id="Package\apps"
-          TopLeft="804,213" />
+          TopLeft="1153,272.5" />
         <NodeLayout
           Size="152,42"
           Id="Package\apps stg -&gt; srd"
-          TopLeft="782,306" />
+          TopLeft="1297.25,295.5" />
         <NodeLayout
           Size="131,42"
           Id="Package\Campaigns"
-          TopLeft="574,203" />
+          TopLeft="923,262.5" />
         <NodeLayout
           Size="190,42"
           Id="Package\Campaigns stg -&gt; srd"
-          TopLeft="552,296" />
+          TopLeft="746,395.5" />
         <NodeLayout
           Size="129,42"
           Id="Package\Eyetracker"
-          TopLeft="342,197" />
+          TopLeft="451,265.25" />
         <NodeLayout
           Size="164,42"
           Id="Package\Eyetracker stg -&gt; srd"
-          TopLeft="326,297" />
+          TopLeft="606.25,456.5" />
         <NodeLayout
           Size="114,42"
           Id="Package\gaming"
-          TopLeft="64,198" />
+          TopLeft="283,247.5" />
         <NodeLayout
           Size="164,42"
           Id="Package\gaming stg -&gt; srd"
-          TopLeft="61,288" />
+          TopLeft="58.75,345" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\Handeling indexes"
+          TopLeft="839,1029.75" />
         <NodeLayout
           Size="133,42"
           Id="Package\interactions"
-          TopLeft="68,627" />
+          TopLeft="287,676.5" />
         <NodeLayout
           Size="152,42"
           Id="Package\interactions stg -&gt; srd"
-          TopLeft="46,720" />
+          TopLeft="275.75,755.75" />
         <NodeLayout
           Size="105,42"
           Id="Package\menu"
-          TopLeft="559,422" />
+          TopLeft="908,481.5" />
         <NodeLayout
           Size="156,42"
           Id="Package\menu stg -&gt; srd"
-          TopLeft="537,515" />
+          TopLeft="886,574.5" />
         <NodeLayout
           Size="120,42"
           Id="Package\message"
-          TopLeft="327,623" />
+          TopLeft="444.75,677.5" />
         <NodeLayout
           Size="152,42"
           Id="Package\message stg -&gt; srd"
-          TopLeft="305,716" />
+          TopLeft="436.5,756.75" />
         <NodeLayout
           Size="113,42"
           Id="Package\passive"
-          TopLeft="790,427" />
+          TopLeft="1140.25,486.5" />
         <NodeLayout
           Size="156,42"
           Id="Package\passive stg -&gt; srd"
-          TopLeft="768,520" />
+          TopLeft="1117,579.5" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\session"
+          TopLeft="819.75,70.25" />
         <NodeLayout
           Size="105,42"
           Id="Package\setup"
-          TopLeft="49,417" />
+          TopLeft="298,466.5" />
         <NodeLayout
           Size="155,42"
           Id="Package\setup stg -&gt; srd"
-          TopLeft="46,507" />
+          TopLeft="171.25,520.25" />
         <NodeLayout
           Size="112,42"
           Id="Package\trouble"
-          TopLeft="327,416" />
+          TopLeft="448.5,475.5" />
         <NodeLayout
           Size="162,42"
           Id="Package\trouble stg -&gt; srd"
-          TopLeft="311,516" />
+          TopLeft="512.5,583" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Truncate Partition"
+          TopLeft="652.25,8.25" />
         <NodeLayout
           Size="115,42"
           Id="Package\userlink"
-          TopLeft="278,17" />
+          TopLeft="518.25,71.5" />
         <NodeLayout
           Size="154,42"
           Id="Package\users stg -&gt; srd"
-          TopLeft="424,78" />
+          TopLeft="615.5,137.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="121,240">
+          TopLeft="340,289.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="22,48"
+              EndConnector="-199.25,55.5"
               Start="0,0"
-              End="22,40.5">
+              End="-199.25,48">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20" />
+                    End="0,23.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20"
-                    Point2="0,24"
-                    Point3="4,24" />
+                    Point1="0,23.75"
+                    Point2="0,27.75"
+                    Point3="-4,27.75" />
                   <mssgle:LineSegment
-                    End="18,24" />
+                    End="-195.25,27.75" />
                   <mssgle:CubicBezierSegment
-                    Point1="18,24"
-                    Point2="22,24"
-                    Point3="22,28" />
+                    Point1="-195.25,27.75"
+                    Point2="-199.25,27.75"
+                    Point3="-199.25,31.75" />
                   <mssgle:LineSegment
-                    End="22,40.5" />
+                    End="-199.25,48" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9566,18 +8983,30 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="407.25,239">
+          TopLeft="535.666666666667,307.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58"
+              EndConnector="152.583333333333,149.25"
               Start="0,0"
-              End="0,50.5">
+              End="152.583333333333,141.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.5" />
+                    End="0,56.7970903522206" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.7970903522206"
+                    Point2="0,60.7970903522206"
+                    Point3="4,60.7970903522206" />
+                  <mssgle:LineSegment
+                    End="148.583333333333,60.7970903522206" />
+                  <mssgle:CubicBezierSegment
+                    Point1="148.583333333333,60.7970903522206"
+                    Point2="152.583333333333,60.7970903522206"
+                    Point3="152.583333333333,64.7970903522206" />
+                  <mssgle:LineSegment
+                    End="152.583333333333,141.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9588,30 +9017,30 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1]"
-          TopLeft="383,458">
+          TopLeft="521.833333333333,517.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="9,58"
+              EndConnector="71.6666666666666,65.5"
               Start="0,0"
-              End="9,50.5">
+              End="71.6666666666666,58">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,25" />
+                    End="0,22.7535211267605" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,25"
-                    Point2="0,29"
-                    Point3="4,29" />
+                    Point1="0,22.7535211267605"
+                    Point2="0,26.7535211267605"
+                    Point3="4,26.7535211267605" />
                   <mssgle:LineSegment
-                    End="5,29" />
+                    End="67.6666666666666,26.7535211267605" />
                   <mssgle:CubicBezierSegment
-                    Point1="5,29"
-                    Point2="9,29"
-                    Point3="9,33" />
+                    Point1="67.6666666666666,26.7535211267605"
+                    Point2="71.6666666666666,26.7535211267605"
+                    Point3="71.6666666666666,30.7535211267605" />
                   <mssgle:LineSegment
-                    End="9,50.5" />
+                    End="71.6666666666666,58" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9622,64 +9051,42 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
-          TopLeft="123.5,549">
+          TopLeft="352,508.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="11,78"
+              EndConnector="0,168"
               Start="0,0"
-              End="11,70.5">
+              End="0,160.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,35"
-                    Point2="0,39"
-                    Point3="4,39" />
-                  <mssgle:LineSegment
-                    End="7,39" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7,39"
-                    Point2="11,39"
-                    Point3="11,43" />
-                  <mssgle:LineSegment
-                    End="11,70.5" />
+                    End="0,160.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,74.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 11]"
-          TopLeft="134.5,669">
+          TopLeft="352.625,718.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-12.5,51"
+              EndConnector="0,37.25"
               Start="0,0"
-              End="-12.5,43.5">
+              End="0,29.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.5"
-                    Point2="0,25.5"
-                    Point3="-4,25.5" />
-                  <mssgle:LineSegment
-                    End="-8.5,25.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-8.5,25.5"
-                    Point2="-12.5,25.5"
-                    Point3="-12.5,29.5" />
-                  <mssgle:LineSegment
-                    End="-12.5,43.5" />
+                    End="0,29.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9690,18 +9097,18 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 12]"
-          TopLeft="384,665">
+          TopLeft="508.625,719.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51"
+              EndConnector="0,37.25"
               Start="0,0"
-              End="0,43.5">
+              End="0,29.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.5" />
+                    End="0,29.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9712,52 +9119,66 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
-          TopLeft="389.5,558">
+          TopLeft="487.166666666667,517.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,65"
+              EndConnector="17.5833333333333,160"
               Start="0,0"
-              End="0,57.5">
+              End="17.5833333333333,152.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,57.5" />
+                    End="0,61.3521126760564" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.3521126760564"
+                    Point2="0,65.3521126760564"
+                    Point3="4,65.3521126760564" />
+                  <mssgle:LineSegment
+                    End="13.5833333333333,65.3521126760564" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13.5833333333333,65.3521126760564"
+                    Point2="17.5833333333333,65.3521126760564"
+                    Point3="17.5833333333333,69.3521126760564" />
+                  <mssgle:LineSegment
+                    End="17.5833333333333,152.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-16.5127864583333,70.3521126760564,50.60890625,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
-          TopLeft="393,38">
+          TopLeft="575.75,113.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="31,61"
+              EndConnector="92.4166666666666,24"
               Start="0,0"
-              End="23.5,61">
+              End="92.4166666666666,16.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="11.5,0" />
+                    End="0,10.2519280205656" />
                   <mssgle:CubicBezierSegment
-                    Point1="11.5,0"
-                    Point2="15.5,0"
-                    Point3="15.5,4" />
+                    Point1="0,10.2519280205656"
+                    Point2="0,14.2519280205656"
+                    Point3="4,14.2519280205656" />
                   <mssgle:LineSegment
-                    End="15.5,57" />
+                    End="88.4166666666666,14.2519280205656" />
                   <mssgle:CubicBezierSegment
-                    Point1="15.5,57"
-                    Point2="15.5,61"
-                    Point3="19.5,61" />
+                    Point1="88.4166666666666,14.2519280205656"
+                    Point2="92.4166666666666,14.2519280205656"
+                    Point3="92.4166666666666,18.2519280205656" />
                   <mssgle:LineSegment
-                    End="23.5,61" />
+                    End="92.4166666666666,16.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9768,85 +9189,85 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 15]"
-          TopLeft="457.2,120">
+          TopLeft="648.7,179.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-336.2,78"
+              EndConnector="-308.7,68"
               Start="0,0"
-              End="-336.2,70.5">
+              End="-308.7,60.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,19.4990925589837" />
+                    End="0,16.486388384755" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,19.4990925589837"
-                    Point2="0,23.4990925589837"
-                    Point3="-4,23.4990925589837" />
+                    Point1="0,16.486388384755"
+                    Point2="0,20.486388384755"
+                    Point3="-4,20.486388384755" />
                   <mssgle:LineSegment
-                    End="-332.2,23.4990925589837" />
+                    End="-304.7,20.486388384755" />
                   <mssgle:CubicBezierSegment
-                    Point1="-332.2,23.4990925589837"
-                    Point2="-336.2,23.4990925589837"
-                    Point3="-336.2,27.4990925589837" />
+                    Point1="-304.7,20.486388384755"
+                    Point2="-308.7,20.486388384755"
+                    Point3="-308.7,24.486388384755" />
                   <mssgle:LineSegment
-                    End="-336.2,70.5" />
+                    End="-308.7,60.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-193.404453125,28.4990925589837,50.60890625,11.609375"
+              BoundingBox="-179.654453125,25.486388384755,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 16]"
-          TopLeft="486.4,120">
+          TopLeft="677.9,179.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-79.9,77"
+              EndConnector="-162.4,85.75"
               Start="0,0"
-              End="-79.9,69.5">
+              End="-162.4,78.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.467718794835" />
+                    End="0,34.3845050215208" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,30.467718794835"
-                    Point2="0,34.467718794835"
-                    Point3="-4,34.467718794835" />
+                    Point1="0,34.3845050215208"
+                    Point2="0,38.3845050215208"
+                    Point3="-4,38.3845050215208" />
                   <mssgle:LineSegment
-                    End="-75.9,34.467718794835" />
+                    End="-158.4,38.3845050215208" />
                   <mssgle:CubicBezierSegment
-                    Point1="-75.9,34.467718794835"
-                    Point2="-79.9,34.467718794835"
-                    Point3="-79.9,38.467718794835" />
+                    Point1="-158.4,38.3845050215208"
+                    Point2="-162.4,38.3845050215208"
+                    Point3="-162.4,42.3845050215208" />
                   <mssgle:LineSegment
-                    End="-79.9,69.5" />
+                    End="-162.4,78.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-65.254453125,39.467718794835,50.60890625,11.609375"
+              BoundingBox="-106.504453125,43.3845050215208,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 17]"
-          TopLeft="515.6,120">
+          TopLeft="707.1,179.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="123.9,83"
+              EndConnector="281.4,83"
               Start="0,0"
-              End="123.9,75.5">
+              End="281.4,75.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -9857,32 +9278,32 @@ group by a.userid;</property>
                     Point2="0,37.1535150645624"
                     Point3="4,37.1535150645624" />
                   <mssgle:LineSegment
-                    End="119.9,37.1535150645624" />
+                    End="277.4,37.1535150645624" />
                   <mssgle:CubicBezierSegment
-                    Point1="119.9,37.1535150645624"
-                    Point2="123.9,37.1535150645624"
-                    Point3="123.9,41.1535150645624" />
+                    Point1="277.4,37.1535150645624"
+                    Point2="281.4,37.1535150645624"
+                    Point3="281.4,41.1535150645624" />
                   <mssgle:LineSegment
-                    End="123.9,75.5" />
+                    End="281.4,75.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="36.645546875,42.1535150645624,50.60890625,11.609375"
+              BoundingBox="115.395546875,42.1535150645624,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 18]"
-          TopLeft="544.8,120">
+          TopLeft="736.3,179.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="309.7,93"
+              EndConnector="467.2,93"
               Start="0,0"
-              End="309.7,85.5">
+              End="467.2,85.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -9893,37 +9314,83 @@ group by a.userid;</property>
                     Point2="0,28.0181488203267"
                     Point3="4,28.0181488203267" />
                   <mssgle:LineSegment
-                    End="305.7,28.0181488203267" />
+                    End="463.2,28.0181488203267" />
                   <mssgle:CubicBezierSegment
-                    Point1="305.7,28.0181488203267"
-                    Point2="309.7,28.0181488203267"
-                    Point3="309.7,32.0181488203267" />
+                    Point1="463.2,28.0181488203267"
+                    Point2="467.2,28.0181488203267"
+                    Point3="467.2,32.0181488203267" />
                   <mssgle:LineSegment
-                    End="309.7,85.5" />
+                    End="467.2,85.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="129.545546875,33.0181488203267,50.60890625,11.609375"
+              BoundingBox="208.295546875,33.0181488203267,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="643.25,245">
+          Id="Package.PrecedenceConstraints[Constraint 19]"
+          TopLeft="876.25,112.25">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,51"
+              EndConnector="-159.416666666667,25.25"
               Start="0,0"
-              End="0,43.5">
+              End="-159.416666666667,17.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,43.5" />
+                    End="0,10.9942159383033" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.9942159383033"
+                    Point2="0,14.9942159383033"
+                    Point3="-4,14.9942159383033" />
+                  <mssgle:LineSegment
+                    End="-155.416666666667,14.9942159383033" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-155.416666666667,14.9942159383033"
+                    Point2="-159.416666666667,14.9942159383033"
+                    Point3="-159.416666666667,18.9942159383033" />
+                  <mssgle:LineSegment
+                    End="-159.416666666667,17.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="968,304.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-127,91"
+              Start="0,0"
+              End="-127,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.0588235294118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.0588235294118"
+                    Point2="0,37.0588235294118"
+                    Point3="-4,37.0588235294118" />
+                  <mssgle:LineSegment
+                    End="-123,37.0588235294118" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-123,37.0588235294118"
+                    Point2="-127,37.0588235294118"
+                    Point3="-127,41.0588235294118" />
+                  <mssgle:LineSegment
+                    End="-127,83.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9934,7 +9401,7 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2 1]"
-          TopLeft="613.25,464">
+          TopLeft="962.25,523.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9946,6 +9413,334 @@ group by a.userid;</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="351.75,797.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="539.25,232"
+              Start="0,0"
+              End="539.25,224.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,133.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,133.75"
+                    Point2="0,137.75"
+                    Point3="4,137.75" />
+                  <mssgle:LineSegment
+                    End="535.25,137.75" />
+                  <mssgle:CubicBezierSegment
+                    Point1="535.25,137.75"
+                    Point2="539.25,137.75"
+                    Point3="539.25,141.75" />
+                  <mssgle:LineSegment
+                    End="539.25,224.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 21]"
+          TopLeft="512.5,798.75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="412.785714285714,231"
+              Start="0,0"
+              End="412.785714285714,223.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,119.883064516129" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,119.883064516129"
+                    Point2="0,123.883064516129"
+                    Point3="4,123.883064516129" />
+                  <mssgle:LineSegment
+                    End="408.785714285714,123.883064516129" />
+                  <mssgle:CubicBezierSegment
+                    Point1="408.785714285714,123.883064516129"
+                    Point2="412.785714285714,123.883064516129"
+                    Point3="412.785714285714,127.883064516129" />
+                  <mssgle:LineSegment
+                    End="412.785714285714,223.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 22]"
+          TopLeft="964,616.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25,413.25"
+              Start="0,0"
+              End="-25,405.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,241.3671875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,241.3671875"
+                    Point2="0,245.3671875"
+                    Point3="-4,245.3671875" />
+                  <mssgle:LineSegment
+                    End="-21,245.3671875" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21,245.3671875"
+                    Point2="-25,245.3671875"
+                    Point3="-25,249.3671875" />
+                  <mssgle:LineSegment
+                    End="-25,405.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 23]"
+          TopLeft="1195,621.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-232,408.25"
+              Start="0,0"
+              End="-232,400.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,294.336538461538" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,294.336538461538"
+                    Point2="0,298.336538461538"
+                    Point3="-4,298.336538461538" />
+                  <mssgle:LineSegment
+                    End="-228,298.336538461538" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-228,298.336538461538"
+                    Point2="-232,298.336538461538"
+                    Point3="-232,302.336538461538" />
+                  <mssgle:LineSegment
+                    End="-232,400.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 24]"
+          TopLeft="652.25,29.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-76.5,42.25"
+              Start="0,0"
+              End="-76.5,34.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-72.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-72.5,0"
+                    Point2="-76.5,0"
+                    Point3="-76.5,4" />
+                  <mssgle:LineSegment
+                    End="-76.5,34.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 25]"
+          TopLeft="815.25,29.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="61,41"
+              Start="0,0"
+              End="61,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57,0"
+                    Point2="61,0"
+                    Point3="61,4" />
+                  <mssgle:LineSegment
+                    End="61,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 26]"
+          TopLeft="248.75,562.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="618.25,467.5"
+              Start="0,0"
+              End="618.25,460">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,337.634615384615" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,337.634615384615"
+                    Point2="0,341.634615384615"
+                    Point3="4,341.634615384615" />
+                  <mssgle:LineSegment
+                    End="614.25,341.634615384615" />
+                  <mssgle:CubicBezierSegment
+                    Point1="614.25,341.634615384615"
+                    Point2="618.25,341.634615384615"
+                    Point3="618.25,345.634615384615" />
+                  <mssgle:LineSegment
+                    End="618.25,460" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 27]"
+          TopLeft="140.75,387">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="722.821428571429,642.75"
+              Start="0,0"
+              End="722.821428571429,635.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,481.714488636364" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,481.714488636364"
+                    Point2="0,485.714488636364"
+                    Point3="4,485.714488636364" />
+                  <mssgle:LineSegment
+                    End="718.821428571429,485.714488636364" />
+                  <mssgle:CubicBezierSegment
+                    Point1="718.821428571429,485.714488636364"
+                    Point2="722.821428571429,485.714488636364"
+                    Point3="722.821428571429,489.714488636364" />
+                  <mssgle:LineSegment
+                    End="722.821428571429,635.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 28]"
+          TopLeft="593.5,625">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="329.5,404.75"
+              Start="0,0"
+              End="329.5,397.25">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,209.618055555556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,209.618055555556"
+                    Point2="0,213.618055555556"
+                    Point3="4,213.618055555556" />
+                  <mssgle:LineSegment
+                    End="325.5,213.618055555556" />
+                  <mssgle:CubicBezierSegment
+                    Point1="325.5,213.618055555556"
+                    Point2="329.5,213.618055555556"
+                    Point3="329.5,217.618055555556" />
+                  <mssgle:LineSegment
+                    End="329.5,397.25" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 29]"
+          TopLeft="688.25,498.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="241.15,531.25"
+              Start="0,0"
+              End="241.15,523.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,289.422965116279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,289.422965116279"
+                    Point2="0,293.422965116279"
+                    Point3="4,293.422965116279" />
+                  <mssgle:LineSegment
+                    End="237.15,293.422965116279" />
+                  <mssgle:CubicBezierSegment
+                    Point1="237.15,293.422965116279"
+                    Point2="241.15,293.422965116279"
+                    Point3="241.15,297.422965116279" />
+                  <mssgle:LineSegment
+                    End="241.15,523.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9956,30 +9751,24 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="101.5,459">
+          TopLeft="298,487.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="22,48"
+              EndConnector="-49.25,32.75"
               Start="0,0"
-              End="22,40.5">
+              End="-49.25,25.25">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20" />
+                    End="-45.25,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,20"
-                    Point2="0,24"
-                    Point3="4,24" />
+                    Point1="-45.25,0"
+                    Point2="-49.25,0"
+                    Point3="-49.25,4" />
                   <mssgle:LineSegment
-                    End="18,24" />
-                  <mssgle:CubicBezierSegment
-                    Point1="18,24"
-                    Point2="22,24"
-                    Point3="22,28" />
-                  <mssgle:LineSegment
-                    End="22,40.5" />
+                    End="-49.25,25.25" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9989,101 +9778,151 @@ group by a.userid;</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="143,330">
+          Id="Package.PrecedenceConstraints[Constraint 30]"
+          TopLeft="1009,304.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-41.5,87"
+              EndConnector="-48.5,177"
               Start="0,0"
-              End="-41.5,79.5">
+              End="-48.5,169.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.5" />
+                    End="0,68.0814479638009" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,39.5"
-                    Point2="0,43.5"
-                    Point3="-4,43.5" />
+                    Point1="0,68.0814479638009"
+                    Point2="0,72.0814479638009"
+                    Point3="-4,72.0814479638009" />
                   <mssgle:LineSegment
-                    End="-37.5,43.5" />
+                    End="-44.5,72.0814479638009" />
                   <mssgle:CubicBezierSegment
-                    Point1="-37.5,43.5"
-                    Point2="-41.5,43.5"
-                    Point3="-41.5,47.5" />
+                    Point1="-44.5,72.0814479638009"
+                    Point2="-48.5,72.0814479638009"
+                    Point3="-48.5,76.0814479638009" />
                   <mssgle:LineSegment
-                    End="-41.5,79.5" />
+                    End="-48.5,169.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-46.054453125,48.5,50.60890625,11.609375"
+              BoundingBox="-49.554453125,77.0814479638009,50.60890625,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="408,339">
+          Id="Package.PrecedenceConstraints[Constraint 31]"
+          TopLeft="1200.125,314.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-25,77"
+              EndConnector="0,172"
               Start="0,0"
-              End="-25,69.5">
+              End="0,164.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,34.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,34.5"
-                    Point2="0,38.5"
-                    Point3="-4,38.5" />
-                  <mssgle:LineSegment
-                    End="-21,38.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-21,38.5"
-                    Point2="-25,38.5"
-                    Point3="-25,42.5" />
-                  <mssgle:LineSegment
-                    End="-25,69.5" />
+                    End="0,164.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,76.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="647,338">
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="354.083333333333,289.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-35.5,84"
+              EndConnector="0,177"
               Start="0,0"
-              End="-35.5,76.5">
+              End="0,169.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,38"
-                    Point2="0,42"
-                    Point3="-4,42" />
+                    End="0,169.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,78.9453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="495.333333333333,307.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.16666666666663,168.25"
+              Start="0,0"
+              End="9.16666666666663,160.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="-31.5,42" />
+                    End="0,64.5367534456356" />
                   <mssgle:CubicBezierSegment
-                    Point1="-31.5,42"
-                    Point2="-35.5,42"
-                    Point3="-35.5,46" />
+                    Point1="0,64.5367534456356"
+                    Point2="0,68.5367534456356"
+                    Point3="4,68.5367534456356" />
                   <mssgle:LineSegment
-                    End="-35.5,76.5" />
+                    End="5.16666666666663,68.5367534456356" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.16666666666663,68.5367534456356"
+                    Point2="9.16666666666663,68.5367534456356"
+                    Point3="9.16666666666663,72.5367534456356" />
+                  <mssgle:LineSegment
+                    End="9.16666666666663,160.75" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-20.7211197916667,73.5367534456356,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="841,437.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="102.8,592.25"
+              Start="0,0"
+              End="102.8,584.75">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,361.349025974026" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,361.349025974026"
+                    Point2="0,365.349025974026"
+                    Point3="4,365.349025974026" />
+                  <mssgle:LineSegment
+                    End="98.8,365.349025974026" />
+                  <mssgle:CubicBezierSegment
+                    Point1="98.8,365.349025974026"
+                    Point2="102.8,365.349025974026"
+                    Point3="102.8,369.349025974026" />
+                  <mssgle:LineSegment
+                    End="102.8,584.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10094,30 +9933,30 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="854.5,255">
+          TopLeft="1254,293.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="8,51"
+              EndConnector="43.25,23"
               Start="0,0"
-              End="8,43.5">
+              End="35.75,23">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5" />
+                    End="17.625,0" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.5"
-                    Point2="0,25.5"
-                    Point3="4,25.5" />
+                    Point1="17.625,0"
+                    Point2="21.625,0"
+                    Point3="21.625,4" />
                   <mssgle:LineSegment
-                    End="4,25.5" />
+                    End="21.625,19" />
                   <mssgle:CubicBezierSegment
-                    Point1="4,25.5"
-                    Point2="8,25.5"
-                    Point3="8,29.5" />
+                    Point1="21.625,19"
+                    Point2="21.625,23"
+                    Point3="25.625,23" />
                   <mssgle:LineSegment
-                    End="8,43.5" />
+                    End="35.75,23" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10128,30 +9967,30 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="858,348">
+          TopLeft="1373.25,337.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-11.5,79"
+              EndConnector="-399.340909090909,692.25"
               Start="0,0"
-              End="-11.5,71.5">
+              End="-399.340909090909,684.75">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,35.5" />
+                    End="0,561.1572265625" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,35.5"
-                    Point2="0,39.5"
-                    Point3="-4,39.5" />
+                    Point1="0,561.1572265625"
+                    Point2="0,565.1572265625"
+                    Point3="-4,565.1572265625" />
                   <mssgle:LineSegment
-                    End="-7.5,39.5" />
+                    End="-395.340909090909,565.1572265625" />
                   <mssgle:CubicBezierSegment
-                    Point1="-7.5,39.5"
-                    Point2="-11.5,39.5"
-                    Point3="-11.5,43.5" />
+                    Point1="-395.340909090909,565.1572265625"
+                    Point2="-399.340909090909,565.1572265625"
+                    Point3="-399.340909090909,569.1572265625" />
                   <mssgle:LineSegment
-                    End="-11.5,71.5" />
+                    End="-399.340909090909,684.75" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10162,7 +10001,7 @@ group by a.userid;</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="846.25,469">
+          TopLeft="1195.875,528.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10174,38 +10013,6 @@ group by a.userid;</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,43.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="113,42"
-          Id="Package\session"
-          TopLeft="557,17" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 19]"
-          TopLeft="557,38">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-56,40"
-              Start="0,0"
-              End="-56,32.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-52,0" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-52,0"
-                    Point2="-56,0"
-                    Point3="-56,4" />
-                  <mssgle:LineSegment
-                    End="-56,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10314,7 +10121,7 @@ group by a.userid;</property>
     design-time-name="Package\Campaigns">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="142,42"
           Id="Package\Campaigns\ODBC Source"
@@ -10358,7 +10165,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10380,7 +10189,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10496,7 +10307,7 @@ group by a.userid;</property>
     design-time-name="Package\gaming">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="165,42"
           Id="Package\gaming\Data Conversion 1"
@@ -10552,7 +10363,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10586,7 +10399,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10620,7 +10435,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10642,7 +10459,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10771,7 +10590,7 @@ group by a.userid;</property>
     design-time-name="Package\menu">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="142,42"
           Id="Package\menu\ODBC Source"
@@ -10815,7 +10634,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10837,7 +10658,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10860,7 +10683,7 @@ group by a.userid;</property>
     design-time-name="Package\message">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="142,42"
           Id="Package\message\ODBC Source"
@@ -10904,7 +10727,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10926,7 +10751,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10949,7 +10776,7 @@ group by a.userid;</property>
     design-time-name="Package\passive">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="142,42"
           Id="Package\passive\ODBC Source"
@@ -10993,7 +10820,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -11015,7 +10844,9 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11023,6 +10854,99 @@ group by a.userid;</property>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\passive\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\session">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\session\OLE DB Destination 2"
+          TopLeft="14,370" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\session\session"
+          TopLeft="28,170" />
+        <NodeLayout
+          Size="165,42"
+          Id="Package\session\Data Conversion 2"
+          TopLeft="13,260" />
+        <EdgeLayout
+          Id="Package\session.Paths[ODBC Source Output]"
+          TopLeft="84.5,212">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,48"
+              Start="0,0"
+              End="11,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="7,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,24"
+                    Point2="11,24"
+                    Point3="11,28" />
+                  <mssgle:LineSegment
+                    End="11,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\session.Paths[Data Conversion Output]"
+          TopLeft="97.5,302">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\session\OLE DB Destination 2">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -11207,181 +11131,36 @@ group by a.userid;</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\trouble\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\userlink">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="165,42"
-          Id="Package\userlink\Data Conversion 1"
-          TopLeft="439,257" />
-        <NodeLayout
-          Size="165,42"
-          Id="Package\userlink\Data Conversion 2"
-          TopLeft="13,260" />
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\userlink\OLE DB Destination"
           TopLeft="212,364" />
         <NodeLayout
           Size="104,42"
-          Id="Package\userlink\usbid 1"
-          TopLeft="28,170" />
-        <NodeLayout
-          Size="127,42"
-          Id="Package\userlink\machineid"
-          TopLeft="423,159" />
-        <NodeLayout
-          Size="104,42"
           Id="Package\userlink\usbid"
           TopLeft="163,157" />
-        <NodeLayout
-          Size="180,42"
-          Id="Package\userlink\OLE DB Destination 1"
-          TopLeft="439,364" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\userlink\OLE DB Destination 2"
-          TopLeft="14,370" />
         <NodeLayout
           Size="156,42"
           Id="Package\userlink\Data Conversion"
           TopLeft="225,255" />
-        <EdgeLayout
-          Id="Package\userlink.Paths[Data Conversion Output2]"
-          TopLeft="97.5,302">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,68"
-              Start="0,0"
-              End="0,60.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,60.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\userlink.Paths[Data Conversion Output1]"
-          TopLeft="525.25,299">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,65"
-              Start="0,0"
-              End="0,57.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,57.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\userlink.Paths[Data Conversion Output]"
-          TopLeft="300.25,297">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,67"
-              Start="0,0"
-              End="0,59.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,59.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\userlink.Paths[ODBC Source Output2]"
-          TopLeft="80,212">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="15.5,48"
-              Start="0,0"
-              End="15.5,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20"
-                    Point2="0,24"
-                    Point3="4,24" />
-                  <mssgle:LineSegment
-                    End="11.5,24" />
-                  <mssgle:CubicBezierSegment
-                    Point1="11.5,24"
-                    Point2="15.5,24"
-                    Point3="15.5,28" />
-                  <mssgle:LineSegment
-                    End="15.5,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\userlink.Paths[ODBC Source Output1]"
-          TopLeft="486.5,201">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="35,56"
-              Start="0,0"
-              End="35,48.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,24" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,24"
-                    Point2="0,28"
-                    Point3="4,28" />
-                  <mssgle:LineSegment
-                    End="31,28" />
-                  <mssgle:CubicBezierSegment
-                    Point1="31,28"
-                    Point2="35,28"
-                    Point3="35,32" />
-                  <mssgle:LineSegment
-                    End="35,48.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\userlink.Paths[ODBC Source Output]"
           TopLeft="215,199">
@@ -11413,7 +11192,33 @@ group by a.userid;</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\userlink.Paths[Data Conversion Output]"
+          TopLeft="300.25,297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -11421,121 +11226,6 @@ group by a.userid;</property>
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\userlink\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\userlink\OLE DB Destination 1">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\userlink\OLE DB Destination 2">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\session">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="165,42"
-          Id="Package\session\Data Conversion 2"
-          TopLeft="13,260" />
-        <NodeLayout
-          Size="113,42"
-          Id="Package\session\session"
-          TopLeft="28,170" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\session\OLE DB Destination 2"
-          TopLeft="14,370" />
-        <EdgeLayout
-          Id="Package\session.Paths[Data Conversion Output]"
-          TopLeft="97.5,302">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,68"
-              Start="0,0"
-              End="0,60.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,60.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\session.Paths[ODBC Source Output]"
-          TopLeft="84.5,212">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="11,48"
-              Start="0,0"
-              End="11,40.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,20" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20"
-                    Point2="0,24"
-                    Point3="4,24" />
-                  <mssgle:LineSegment
-                    End="7,24" />
-                  <mssgle:CubicBezierSegment
-                    Point1="7,24"
-                    Point2="11,24"
-                    Point3="11,28" />
-                  <mssgle:LineSegment
-                    End="11,40.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\session\OLE DB Destination 2">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
